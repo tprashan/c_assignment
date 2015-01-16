@@ -1,0 +1,22 @@
+[main] fiboTestRunner 1000 (0) exception: trapped!
+[main] fiboTestRunner 1000 (0) exception: code 0xC0000005 at 0x61054DA4
+[main] fiboTestRunner 1000 (0) exception: ax 0x69727473 bx 0x403FD4 cx 0xFFFFFFD4 dx 0xFFFFFFD4
+[main] fiboTestRunner 1000 (0) exception: si 0x0 di 0x0 bp 0x244FE80 sp 0x244FE7C
+[main] fiboTestRunner 1000 (0) exception: exception is: STATUS_ACCESS_VIOLATION
+[main] fiboTestRunner 1000 (0) stack: Stack trace:
+[main] fiboTestRunner 1000 (0) stack: frame 0: sp = 0x244FA1C, pc = 0x6100A2C3
+[main] fiboTestRunner 1000 (0) stack: frame 1: sp = 0x244FA58, pc = 0x7709B499
+[main] fiboTestRunner 1000 (0) stack: frame 2: sp = 0x244FA7C, pc = 0x7709B46B
+[main] fiboTestRunner 1000 (0) stack: frame 3: sp = 0x244FB2C, pc = 0x77050133
+[main] fiboTestRunner 1000 (0) stack: frame 4: sp = 0x244FE80, pc = 0x404159
+[main] fiboTestRunner 1000 (0) stack: frame 5: sp = 0x244FED4, pc = 0x401C7B
+[main] fiboTestRunner 1000 (0) stack: frame 6: sp = 0x244FEE0, pc = 0x401D8F
+[main] fiboTestRunner 1000 (0) stack: frame 7: sp = 0x244FF00, pc = 0x61004402
+[main] fiboTestRunner 1000 (0) stack: frame 8: sp = 0x244FF50, pc = 0x61004420
+[main] fiboTestRunner 1000 (0) stack: frame 9: sp = 0x244FF5C, pc = 0x404C8E
+[main] fiboTestRunner 1000 (0) stack: frame 10: sp = 0x244FF6C, pc = 0x40103A
+[main] fiboTestRunner 1000 (0) stack: frame 11: sp = 0x244FF88, pc = 0x768F338A
+[main] fiboTestRunner 1000 (0) stack: frame 12: sp = 0x244FF94, pc = 0x77079F72
+[main] fiboTestRunner 1000 (0) stack: frame 13: sp = 0x244FFD4, pc = 0x77079F45
+[main] fiboTestRunner 1000 (0) stack: frame 14: sp = 0x244FFEC, pc = 0x0
+[main] fiboTestRunner 1000 (0) stack: End of stack trace
