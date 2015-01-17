@@ -235,11 +235,108 @@ float *my_float_map(float *array,int length,float (*function) (float)){
    return result_array;
 };
 
-char **my_string_map(char **array,int length,char *(*function) (char*)){
+char **my_string_map(char **array,int length,char *(*function) (char*,int)){
    int i;
    char **result_array  = (char **)malloc(sizeof(char)*length);
    for(i=0;i<length;i++){
-      (result_array)[i]=(*function)(array[i]);
+      (result_array)[i]=(*function)(array[i],i);
    };
    return result_array;
+};
+
+int my_int_reduce(int *array,int length,int (*function) (int ,int)){
+   int i, result = array[0];
+   for(i=1;i<length;i++){
+      result = (*function)(result,array[i]);
+   }
+   return result;
+};
+
+float my_float_reduce(float *array,int length,float initValue,float (*function) (float ,float)){
+   int i;
+   float result = initValue;
+   for(i=0;i<length;i++){
+      result = (*function)(result,array[i]);
+   }
+   return result;
+};
+
+int my_int_reduce_with_init_value(int *array,int length,int initValue,int (*function) (int ,int)){
+   int i;
+   int result ;
+   result = initValue;
+   for(i=0;i<length;i++){
+      result = (*function)(result,array[i]);
+   }
+   return result;
+};
+
+int my_char_reduce(char *array,int length,char initValue,char (*function) (char ,char)){
+   int i;
+   char result ;
+   result = initValue;
+   for(i=1;i<length;i++){
+      result = (*function)(result,array[i]);
+   }
+   return result;
+};
+
+char *my_string_reduce(char **array,int length,char* initValue,char *(*function) (char*,char*)){
+   int i;
+   char *result = initValue;
+   for(i=0;i<length;i++){
+      result=(*function)(result,array[i]);
+   };
+   return  result;
+};
+
+int my_int_indexOf(int *array,int length, int initvalue){
+   int i,result;
+   for(i=0;i<length;i++){
+      if(array[i]==initvalue){
+         result=i;
+         break;
+      };
+   };
+   return result;
+};
+
+// int my_string_indexOf(char * string,char* initSubString){
+//    int i,j=0,index=-1;
+//    int count=0;
+//    for(i=0;i<strlen(string);i++){
+//       if(string[i]!=initSubString[j]){
+//          count=0;
+//          j=0;
+//          index=-1;
+//       };
+//       if(string[i]==initSubString[j]){
+//          j++;
+//          count++;
+//          if(index<0)
+//             index=i;
+//       };
+//       if(count==strlen(initSubString)){
+//          break;
+//       }
+//    };
+//    return index;
+// };
+
+int my_string_indexOf(char * string,char* initSubString){
+   int i,j,count=0,index=-1;
+   int length = strlen(string);
+   for(i=0;i<length;i++){
+      for(j=0;j<strlen(initSubString);j++){
+         if(string[i+j]==initSubString[j]){
+            count++;
+         }
+      }
+      if(count==strlen(initSubString)){
+         index=i;
+         break;
+      };
+      count=0;
+   }
+   return index;
 };

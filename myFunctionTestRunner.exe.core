@@ -1,0 +1,23 @@
+[main] myFunctionTestRunner 1000 (0) exception: trapped!
+[main] myFunctionTestRunner 1000 (0) exception: code 0xC0000005 at 0x6105587C
+[main] myFunctionTestRunner 1000 (0) exception: ax 0x68 bx 0x68 cx 0x68 dx 0x68
+[main] myFunctionTestRunner 1000 (0) exception: si 0x0 di 0x245FDDC bp 0x245FBA4 sp 0x245FBA0
+[main] myFunctionTestRunner 1000 (0) exception: exception is: STATUS_ACCESS_VIOLATION
+[main] myFunctionTestRunner 1000 (0) stack: Stack trace:
+[main] myFunctionTestRunner 1000 (0) stack: frame 0: sp = 0x245F740, pc = 0x6100A2C3
+[main] myFunctionTestRunner 1000 (0) stack: frame 1: sp = 0x245F77C, pc = 0x76F1B499
+[main] myFunctionTestRunner 1000 (0) stack: frame 2: sp = 0x245F7A0, pc = 0x76F1B46B
+[main] myFunctionTestRunner 1000 (0) stack: frame 3: sp = 0x245F850, pc = 0x76ED0133
+[main] myFunctionTestRunner 1000 (0) stack: frame 4: sp = 0x245FBA4, pc = 0x61058EA4
+[main] myFunctionTestRunner 1000 (0) stack: frame 5: sp = 0x245FE3C, pc = 0x6105845C
+[main] myFunctionTestRunner 1000 (0) stack: frame 6: sp = 0x245FE54, pc = 0x61053F31
+[main] myFunctionTestRunner 1000 (0) stack: frame 7: sp = 0x245FE6C, pc = 0x4060E3
+[main] myFunctionTestRunner 1000 (0) stack: frame 8: sp = 0x245FE8C, pc = 0x405202
+[main] myFunctionTestRunner 1000 (0) stack: frame 9: sp = 0x245FED0, pc = 0x401EDB
+[main] myFunctionTestRunner 1000 (0) stack: frame 10: sp = 0x245FEDC, pc = 0x401FEF
+[main] myFunctionTestRunner 1000 (0) stack: frame 11: sp = 0x245FEFC, pc = 0x61004402
+[main] myFunctionTestRunner 1000 (0) stack: frame 12: sp = 0x245FF50, pc = 0x61004420
+[main] myFunctionTestRunner 1000 (0) stack: frame 13: sp = 0x245FF5C, pc = 0x40624E
+[main] myFunctionTestRunner 1000 (0) stack: frame 14: sp = 0x245FF6C, pc = 0x40103A
+[main] myFunctionTestRunner 1000 (0) stack: frame 15: sp = 0x245FF88, pc = 0x74CD338A
+[main] myFunctionTestRunner 1000 (0) stack: End of stack trace (more stack frames may be present)

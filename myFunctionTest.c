@@ -476,10 +476,8 @@ int greaterThanEqualToFour(int x){
 };
 
 void test_map_for_integer_array(){
-	// int (*function)(int );
 	int array[]={1,3,2,13,4,6};
 	int *newArray;
-	// function = &greaterThanEqualToFour;
 	newArray=my_int_map(array, 6, greaterThanEqualToFour);
 
 	assertEqual(newArray[0],0);
@@ -491,7 +489,6 @@ int addFiveInEachEleOfArray(int x){
 };
 
 void test_map_for_integer_array_return_0_or_return_value(){
-	// int (*function)(int );
 	int array[]={1,33,2,13};
 	int *newArray=my_int_map(array, 4, addFiveInEachEleOfArray);
 	assertEqual(newArray[0],6);
@@ -534,7 +531,7 @@ void test_map_for_float_array(){
 	assertEqual(new_Array[3],23.8);
 };
 
-char *map_string_give_hello(char* x){
+char *map_string_give_heaven(char* x,int i){
 	if(!(strcmp(x,"hel"))){
 		x="heaven";
 		return x;
@@ -544,6 +541,129 @@ char *map_string_give_hello(char* x){
 
 void test_map_for_string_give_john(){
 	char *array[]={"hello","john","go","hel","hello"};
-	char **result_array=my_string_map(array, 5, map_string_give_hello);
-	assertEqual(strcmp(result_array[3],"heaven"),0);
+	char **newArray=my_string_map(array, 5, map_string_give_heaven);
+	assertEqual(strcmp(newArray[3],"heaven"),0);
+};
+
+
+int getReduceValue(int x, int y){
+	return x+y;
+};
+
+void test_reduce_for_integer_array(){
+	int array[]={1,3,2,13,4,6};
+	int newArray = my_int_reduce(array, 6, getReduceValue);
+	assertEqual(newArray,29);
+};
+
+int getReduceValueWithInitValue(int x, int y){
+	return x-y;
+};
+
+void test_reduce_for_integer_array_with_initial_value(){
+	int array[]={1,3,2,13,4,6};
+	int newArray = my_int_reduce_with_init_value(array, 6, 1,getReduceValueWithInitValue);
+	assertEqual(newArray,-28);
+};
+
+float subtractValueOfArray(float x,float y){
+		if(x>y){
+			return x-y;
+		};
+		return y-x;
+};
+
+void test_reduce_for_float_array(){
+	float array[]={1.7,3.4,2.6,13.8,4.9,6};
+	float initValue = 2.1;
+	float result_array=my_float_reduce(array, 6,initValue, subtractValueOfArray);
+	assertEqual(result_array,2.5);
+};
+
+void test_reduce_for_float_array_give(){
+	float array[]={1.7,3.5,2.0,13.8,4.7,6.1};
+	float initValue = 8.1;
+	float result=my_float_reduce(array, 6,initValue, subtractValueOfArray);
+	assertEqual(result,2.1);
+};
+
+char giveBiggerNumber(char x ,char y){
+	if(x>y)
+		return x;
+	return y;
+};
+
+void test_reduce_for_char(){
+	char array[]={'a','h','s','h','H'};
+	char new_Array=my_char_reduce(array, 5,'g', giveBiggerNumber);
+	assertEqual(new_Array,'s');
+};
+
+char *reduce_string_give_a_big_string_len(char* x,char* y){
+	if(strlen(x)>=strlen(y))
+		return x;
+	return y;
+};
+
+void test_reduce_for_string_give_big_string_len(){
+	char *array[]={"hello","john","go","hel","hello"};
+	char* initValue = "hii";
+	char *newArray=my_string_reduce(array, 5,initValue, reduce_string_give_a_big_string_len);
+	assertEqual(strcmp(newArray,array[4]),0);
+};
+
+char *reduce_string_give_a_big_string(char* x,char* y){
+	char* destination = malloc(sizeof(char)*100);
+	strcpy(destination,x);
+	strcat(destination,y);
+	return destination;
+};
+
+void test_reduce_for_string_give_big_string(){
+	char *array[]={"hello","john","go","hel","hello"};
+	char* initValue = "hii";
+	char *newArray=my_string_reduce(array, 5,initValue, reduce_string_give_a_big_string);
+	assertEqual(strcmp(newArray,"hiihellojohngohelhello"),0);
+};
+
+void test_find_index_Of_given_int_element(){
+	int array[]={1,4,7,3,8};
+	int initValue=7;
+	int result = my_int_indexOf(array,5,initValue);
+	assertEqual(result,2);
+};
+
+void test_find_indexOf_given_substring_of_a_string(){
+	char* string = "prashant";
+	char *initSubString = "ras";
+	int result = my_string_indexOf(string,initSubString);
+	assertEqual(result,1);
+};
+
+void test_find_indexOf_given_substring_of_a_string_return_index_4(){
+	char* string = "prashant";
+	char *initSubString = "han";
+	int result = my_string_indexOf(string,initSubString);
+	assertEqual(result,4);
+};
+
+void test_find_indexOf_given_substring_of_a_string_return_index_minus_1(){
+	char* string = "prashant";
+	char *initSubString = "aht";
+	int result = my_string_indexOf(string,initSubString);
+	assertEqual(result,-1);
+};
+
+void test_find_indexOf_return_index_minus_1(){
+	char* string = "paramatma";
+	char *initSubString = "aht";
+	int result = my_string_indexOf(string,initSubString);
+	assertEqual(result,-1);
+};
+
+void test_find_indexOf_return_index_minus_3(){
+	char* string = "paramatma";
+	char *initSubString = "ama";
+	int result = my_string_indexOf(string,initSubString);
+	assertEqual(result,3);
 };
