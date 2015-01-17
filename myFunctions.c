@@ -301,6 +301,25 @@ int my_int_indexOf(int *array,int length, int initvalue){
    return result;
 };
 
+
+int my_string_indexOf(char * string,char* initSubString){
+   int i,j,count=0,index=-1;
+   int length = strlen(string);
+   for(i=0;i<length;i++){
+      for(j=0;j<strlen(initSubString);j++){
+         if(string[i+j]==initSubString[j]){
+            count++;
+         }
+      }
+      if(count==strlen(initSubString)){
+         index=i;
+         break;
+      };
+      count=0;
+   }
+   return index;
+};
+
 // int my_string_indexOf(char * string,char* initSubString){
 //    int i,j=0,index=-1;
 //    int count=0;
@@ -322,21 +341,3 @@ int my_int_indexOf(int *array,int length, int initvalue){
 //    };
 //    return index;
 // };
-
-int my_string_indexOf(char * string,char* initSubString){
-   int i,j,count=0,index=-1;
-   int length = strlen(string);
-   for(i=0;i<length;i++){
-      for(j=0;j<strlen(initSubString);j++){
-         if(string[i+j]==initSubString[j]){
-            count++;
-         }
-      }
-      if(count==strlen(initSubString)){
-         index=i;
-         break;
-      };
-      count=0;
-   }
-   return index;
-};
