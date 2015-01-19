@@ -306,21 +306,21 @@ void test_string_compare_hellooooo_and_hello_111(){
 	assertEqual(my_strcmp(string1,string2),111);
 };
 
-int print_integer(int x,int index){
+int print_integer(int x,int index,int *array){
 	printf("Number %d",(x+5) );
 	printf("........Index%d\n",index );
 	return x;
 };
 
 void test_forEach_for_integer(){
-	int (*function)(int ,int);
+	int (*function)(int ,int,int *);
 	int *array,array1[]={1,3};
 	function = &print_integer;
 	array=array1;
 	assertEqual(my_int_forEach(array, 2, function),1);
 };
 
-int print_char(char x,int index){
+int print_char(char x,int index,char *array){
 	printf("Charcter %c",x );
 	printf("........Index%d\n",index );
 	return x;
@@ -328,32 +328,32 @@ int print_char(char x,int index){
 
 
 void test_forEach_for_char(){
-	int (*function)(char ,int);
+	int (*function)(char ,int,char *array);
 	char *array,array1[]={'a','s','d'};
 	function = &print_char;
 	array=array1;
 	assertEqual(my_char_forEach(array, 3, function),1);
 };
 
-int print_string(char *x,int index){
+int print_string(char *x,int index,char **array){
 	printf("String %s",x );
 	printf("........Index%d\n",index );
 	return *x;
 };
 
 void test_forEach_for_string(){
-	int (*function)(char* ,int);
+	int (*function)(char* ,int,char **array);
 	char *array[]={"hello","hiii","ho"};
 	function = &print_string;
 	assertEqual(my_string_forEach(array, 3, function),1);
 };
 
-int greaterThanFive(int x){
+int greaterThanFive(int x ,int index, int *array){
 		return x>5;
 };
 
 void test_filter_for_integer_array(){
-	int (*function)(int );
+	int (*function)(int,int, int *array);
 	int *array,array1[]={1,3,2,13,4,6};
 	int *result_array;
 	array=array1;
@@ -363,7 +363,7 @@ void test_filter_for_integer_array(){
 };
 
 void test_filter_for_integer_array_should_give_6____of_1_index_of_resArray(){
-	int (*function)(int );
+	int (*function)(int ,int, int *array);
 	int *array,array1[]={1,3,2,13,4,6};
 	int *result_array;
 	array=array1;
@@ -373,7 +373,7 @@ void test_filter_for_integer_array_should_give_6____of_1_index_of_resArray(){
 };
 
 void test_filter_for_integer_array_should_give_8____of_2_index_of_resArray(){
-	int (*function)(int );
+	int (*function)(int,int, int *array );
 	int *array,array1[]={1,4,8,13,55,3};
 	int *result_array;
 	array=array1;
@@ -383,12 +383,12 @@ void test_filter_for_integer_array_should_give_8____of_2_index_of_resArray(){
 	assertEqual(result_array[2],55);
 };
 
-int equalToS(char x){
+int equalToS(char x ,int index,char *array){
 		return x=='S';
 };
 
 void test_filter_for_char(){
-	int (*function)(char);
+	int (*function)(char,int,char *array);
 	char *array,array1[]={'a','S','d'};
 	char *result_array;
 	function = &equalToS;
@@ -398,7 +398,7 @@ void test_filter_for_char(){
 };
 
 void test_filter_for_char_gives_S_of_resArray_index_0(){
-	int (*function)(char);
+	int (*function)(char,int,char *array);
 	char *array,array1[]={'a','s','d','S'};
 	char *result_array;
 	function = &equalToS;
@@ -407,7 +407,7 @@ void test_filter_for_char_gives_S_of_resArray_index_0(){
 	assertEqual(result_array[0],'S');
 };
 
-int filter_string(char* x){
+int filter_string(char* x,int index,char **array){
 	if(!(strcmp(x,"string"))){
 		return 1;
 	}else
@@ -415,7 +415,7 @@ int filter_string(char* x){
 };
 
 void test_filter_for_string(){
-	int (*function)(char*);
+	int (*function)(char*,int,char **array);
 	char *array[]={"hello","string","ho","string"};
 	char **result_array;
 	function = &filter_string;
@@ -424,7 +424,7 @@ void test_filter_for_string(){
 	assertEqual(strcmp(result_array[1],"string"),0);
 };
 
-int filter_string_give_hello(char* x){
+int filter_string_give_hello(char* x,int index,char **array){
 	if(!(strcmp(x,"hello"))){
 		return 0;
 	}else
@@ -432,7 +432,7 @@ int filter_string_give_hello(char* x){
 };
 
 void test_filter_for_string_give_john(){
-	int (*function)(char*);
+	int (*function)(char*,int,char **array);
 	char *array[]={"hello","john","go","hel","hello"};
 	char **result_array;
 	function = &filter_string_give_hello;
@@ -443,12 +443,12 @@ void test_filter_for_string_give_john(){
 };
 
 
-float greaterThanFivePointFive(float x){
+float greaterThanFivePointFive(float x,int index,float *array){
 		return x>5;
 };
 
 void test_filter_for_float_array(){
-	float (*function) (float);
+	float (*function) (float,int,float *array);
 	float *array,array1[]={1.7,3.4,2.6,13.8,4.9,6};
 	float *result_array;
 	array=array1;
@@ -458,7 +458,7 @@ void test_filter_for_float_array(){
 };
 
 void test_filter_for_float_array_will_give_number_greater_than_five(){
-	float (*function) (float);
+	float (*function) (float,int,float *array);
 	float *array,array1[]={1.7,13.4,2.6,13.8,4.9,6};
 	float *result_array;
 	array=array1;
@@ -468,7 +468,7 @@ void test_filter_for_float_array_will_give_number_greater_than_five(){
 	assertEqual(result_array[2],6);
 };
 
-int greaterThanEqualToFour(int x){
+int greaterThanEqualToFour(int x,int index,int *array){
 	if(x>=4){
 		return x;
 	}
@@ -484,7 +484,7 @@ void test_map_for_integer_array(){
 	assertEqual(newArray[3],13);
 };
 
-int addFiveInEachEleOfArray(int x){
+int addFiveInEachEleOfArray(int x,int index,int *array){
 	return x+5;
 };
 
@@ -496,7 +496,7 @@ void test_map_for_integer_array_return_0_or_return_value(){
 	assertEqual(newArray[2],7);
 };
 
-char change_h_into_H(char x){
+char change_h_into_H(char x,int index,char *array){
 	if(x=='h'){
 		x='H';
 		return x;
@@ -517,7 +517,7 @@ void test_map_for_char_return_H_inplace_of_h(){
 	assertEqual(new_Array[1],'H');
 };
 
-float greaterThanFivePointFour(float x){
+float greaterThanFivePointFour(float x,int index,float *array){
 	if(x>=4){
 		return x+10;
 	};
@@ -531,7 +531,7 @@ void test_map_for_float_array(){
 	assertEqual(new_Array[3],23.8);
 };
 
-char *map_string_give_heaven(char* x,int i){
+char *map_string_give_heaven(char* x,int index,char **array){
 	if(!(strcmp(x,"hel"))){
 		x="heaven";
 		return x;
@@ -546,7 +546,7 @@ void test_map_for_string_give_john(){
 };
 
 
-int getReduceValue(int x, int y){
+int getReduceValue(int x, int y, int index,int *array){
 	return x+y;
 };
 
@@ -556,7 +556,7 @@ void test_reduce_for_integer_array(){
 	assertEqual(newArray,29);
 };
 
-int getReduceValueWithInitValue(int x, int y){
+int getReduceValueWithInitValue(int x, int y,int index,int *array){
 	return x-y;
 };
 
@@ -566,7 +566,7 @@ void test_reduce_for_integer_array_with_initial_value(){
 	assertEqual(newArray,-28);
 };
 
-float subtractValueOfArray(float x,float y){
+float subtractValueOfArray(float x,float y,int index,float *array){
 		if(x>y){
 			return x-y;
 		};
@@ -587,7 +587,7 @@ void test_reduce_for_float_array_give(){
 	assertEqual(result,2.1);
 };
 
-char giveBiggerNumber(char x ,char y){
+char giveBiggerNumber(char x ,char y,int index,char *array){
 	if(x>y)
 		return x;
 	return y;
@@ -599,7 +599,7 @@ void test_reduce_for_char(){
 	assertEqual(new_Array,'s');
 };
 
-char *reduce_string_give_a_big_string_len(char* x,char* y){
+char *reduce_string_give_a_big_string_len(char* x,char* y,int index,char **array){
 	if(strlen(x)>=strlen(y))
 		return x;
 	return y;
@@ -612,7 +612,7 @@ void test_reduce_for_string_give_big_string_len(){
 	assertEqual(strcmp(newArray,array[4]),0);
 };
 
-char *reduce_string_give_a_big_string(char* x,char* y){
+char *reduce_string_give_a_big_string(char* x,char* y,int index,char **array){
 	char* destination = malloc(sizeof(char)*100);
 	strcpy(destination,x);
 	strcat(destination,y);

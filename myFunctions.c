@@ -124,11 +124,11 @@ int my_strcmp(char *str1, char *str2){
    return 0;
 };
 
-int my_int_forEach(int *array,int length,int (*function)(int ,int )){
+int my_int_forEach(int *array,int length,int (*function)(int ,int,int * )){
    int i;
    int testingArray[length];
    for(i=0;i<length;i++){
-      testingArray[i]=(*function)(array[i],i);
+      testingArray[i]=(*function)(array[i],i,array);
    };
    for(i=0;i<length;i++){
       if(testingArray[i]!=array[i])
@@ -138,11 +138,11 @@ int my_int_forEach(int *array,int length,int (*function)(int ,int )){
 };
 
 
-int my_char_forEach(char *array,int length,int (*function) (char ,int )){
+int my_char_forEach(char *array,int length,int (*function) (char ,int ,char *array)){
    int i;
    char testingArray[length];
    for(i=0;i<length;i++){
-      testingArray[i]=(*function)(array[i],i);
+      testingArray[i]=(*function)(array[i],i,array);
    };
    for(i=0;i<length;i++){
       if(testingArray[i]!=array[i])
@@ -151,19 +151,19 @@ int my_char_forEach(char *array,int length,int (*function) (char ,int )){
    return 1;
 };
 
-int my_string_forEach(char **array,int length,int (*function) (char *,int )){
+int my_string_forEach(char **array,int length,int (*function) (char *,int ,char **array)){
    int i;
    for(i=0;i<length;i++){
-      (*function)(array[i],i);
+      (*function)(array[i],i,array);
    };
    return 1;
 };
 
-int my_int_filter(int *array, int length, int **result_array,int (*function) (int )){
+int my_int_filter(int *array, int length, int **result_array,int (*function) (int ,int,int *array)){
    int i,count=0;
    *result_array  = (int *)malloc(sizeof(int)*length);
    for(i=0;i<length;i++){
-      if((*function) (array[i] )){
+      if((*function) (array[i],i,array )){
          (*result_array)[count]=array[i];;
          count++;
       };
@@ -171,11 +171,11 @@ int my_int_filter(int *array, int length, int **result_array,int (*function) (in
    return count;
 };
 
-int my_char_filter(char *array,int length,char **result_array,int (*function) (char)){
+int my_char_filter(char *array,int length,char **result_array,int (*function) (char,int,char *array)){
    int i,count=0;
    *result_array  = (char *)malloc(sizeof(char)*length);
    for(i=0;i<length;i++){
-      if((*function) (array[i] )){
+      if((*function) (array[i], i,array)){
          (*result_array)[count]=array[i];;
          count++;
       };
@@ -183,11 +183,11 @@ int my_char_filter(char *array,int length,char **result_array,int (*function) (c
    return count;
 };
 
-int my_string_filter(char **array,int length,char ***result_array,int (*function) (char*)){
+int my_string_filter(char **array,int length,char ***result_array,int (*function) (char*,int,char **array)){
    int i,count=0;
    *result_array  = (char **)malloc(sizeof(int)*length);
    for(i=0;i<length;i++){
-      if((*function) (array[i] )){
+      if((*function) (array[i] ,i,array)){
          (*result_array)[count]=array[i];
          
          count++;
@@ -196,11 +196,11 @@ int my_string_filter(char **array,int length,char ***result_array,int (*function
    return count;
 };
 
-int my_float_filter(float *array,int length,float **result_array,float (*function) (float)){
+int my_float_filter(float *array,int length,float **result_array,float (*function) (float,int,float *array)){
    int i,count=0;
    *result_array  = (float *)malloc(sizeof(float)*length);
    for(i=0;i<length;i++){
-      if((*function) (array[i] )){
+      if((*function) (array[i] ,i,array)){
          (*result_array)[count]=array[i];;
          count++;
       };
@@ -208,84 +208,84 @@ int my_float_filter(float *array,int length,float **result_array,float (*functio
    return count;
 };
 
-int *my_int_map(int *array,int length,int (*function) (int )){
+int *my_int_map(int *array,int length,int (*function) (int ,int,int *array)){
    int i;
    int *result_array = (int *)malloc(sizeof(int)*length);
    for(i=0;i<length;i++){
-      (result_array)[i]=(*function) (array[i]);
+      (result_array)[i]=(*function) (array[i],i,array);
    }
    return result_array;
 };
 
-char *my_char_map(char *array,int length,char(*function) (char)){
+char *my_char_map(char *array,int length,char(*function) (char,int,char *array)){
    int i;
    char *result_array  = (char *)malloc(sizeof(char)*length);
    for(i=0;i<length;i++){
-         (result_array)[i]=(*function) (array[i]);
+         (result_array)[i]=(*function) (array[i],i,array);
    };
    return result_array;
 };
 
-float *my_float_map(float *array,int length,float (*function) (float)){
+float *my_float_map(float *array,int length,float (*function) (float,int,float *array)){
    int i;
    float *result_array  = (float *)malloc(sizeof(float)*length);
    for(i=0;i<length;i++){
-      (result_array)[i]=(*function)(array[i]);
+      (result_array)[i]=(*function)(array[i],i,array);
    };
    return result_array;
 };
 
-char **my_string_map(char **array,int length,char *(*function) (char*,int)){
+char **my_string_map(char **array,int length,char *(*function) (char*,int,char **array)){
    int i;
    char **result_array  = (char **)malloc(sizeof(char)*length);
    for(i=0;i<length;i++){
-      (result_array)[i]=(*function)(array[i],i);
+      (result_array)[i]=(*function)(array[i],i,array);
    };
    return result_array;
 };
 
-int my_int_reduce(int *array,int length,int (*function) (int ,int)){
+int my_int_reduce(int *array,int length,int (*function) (int ,int,int index,int *array )){
    int i, result = array[0];
    for(i=1;i<length;i++){
-      result = (*function)(result,array[i]);
+      result = (*function)(result,array[i],i,array);
    }
    return result;
 };
 
-float my_float_reduce(float *array,int length,float initValue,float (*function) (float ,float)){
+float my_float_reduce(float *array,int length,float initValue,float (*function) (float ,float,int index,float *array)){
    int i;
    float result = initValue;
    for(i=0;i<length;i++){
-      result = (*function)(result,array[i]);
+      result = (*function)(result,array[i],i,array);
    }
    return result;
 };
 
-int my_int_reduce_with_init_value(int *array,int length,int initValue,int (*function) (int ,int)){
+int my_int_reduce_with_init_value(int *array,int length,int initValue,int (*function) (int ,int,int,int *array)){
    int i;
    int result ;
    result = initValue;
    for(i=0;i<length;i++){
-      result = (*function)(result,array[i]);
+      result = (*function)(result,array[i],i,array);
    }
    return result;
 };
 
-int my_char_reduce(char *array,int length,char initValue,char (*function) (char ,char)){
+int my_char_reduce(char *array,int length,char initValue,char (*function) (char ,char,int,char *array)){
    int i;
    char result ;
    result = initValue;
    for(i=1;i<length;i++){
-      result = (*function)(result,array[i]);
+      result = (*function)(result,array[i],i,array);
    }
    return result;
 };
 
-char *my_string_reduce(char **array,int length,char* initValue,char *(*function) (char*,char*)){
+char *my_string_reduce(char **array,int length,char* initValue,char *(*function) (char*,char*,int,char **array)){
    int i;
    char *result = initValue;
    for(i=0;i<length;i++){
-      result=(*function)(result,array[i]);
+      result=(*function)(result,array[i],i,array);
    };
    return  result;
 };

@@ -9,26 +9,26 @@ int prime_number(int start_point,int end_point,int **result_array);
 int compare_string(char *str1, char *str2);
 int my_strcmp(char *str1, char *str2);
 
-int my_int_forEach(int *array,int length,int (*function) (int ,int ));
-int my_char_forEach(char *array,int length,int (*function) (char ,int ));
-int my_string_forEach(char **array,int length,int (*function) (char*,int ));
+int my_int_forEach(int *array,int length,int (*function) (int ,int, int* array));
+int my_char_forEach(char *array,int length,int (*function) (char ,int,char *array ));
+int my_string_forEach(char **array,int length,int (*function) (char*,int,char **array ));
 
-int my_int_filter(int *array,int length,int **result_array,int (*function) (int ));
-int my_char_filter(char *array,int length,char **result_array,int (*function) (char));
-int my_string_filter(char **array,int length,char ***result_array,int (*function) (char*));
-int my_float_filter(float *array,int length,float **result_array,float (*function) (float));
+int my_int_filter(int *array,int length,int **result_array,int (*function) (int ,int, int *array));
+int my_char_filter(char *array,int length,char **result_array,int (*function) (char,int,char *array));
+int my_string_filter(char **array,int length,char ***result_array,int (*function) (char*,int,char **array));
+int my_float_filter(float *array,int length,float **result_array,float (*function) (float,int,float *array));
 
-int *my_int_map(int *array,int length,int (*function) (int ));
-float *my_float_map(float *array,int length,float (*function) (float));
-char *my_char_map(char *array,int length,char (*function) (char));
-char **my_string_map(char **array,int length,char *(*function) (char* ,int));
+int *my_int_map(int *array,int length,int (*function) (int ,int,int *array));
+float *my_float_map(float *array,int length,float (*function) (float,int,float *array));
+char *my_char_map(char *array,int length,char (*function) (char,int,char *array));
+char **my_string_map(char **array,int length,char *(*function) (char* ,int,char **array));
 
-int my_int_reduce(int *array,int length,int (*function) (int ,int));
 
-float my_float_reduce(float *array,int length,float initvalue,float (*function) (float ,float));
-int my_int_reduce_with_init_value(int *array,int length,int initvalue,int (*function) (int ,int));
-int my_char_reduce(char *array,int length,char initvalue,char (*function) (char ,char));
-char*my_string_reduce(char **array,int length,char* initvalue,char *(*function) (char* ,char*));
+int my_int_reduce(int *array,int length,int (*function) (int ,int,int index,int *array));
+int my_int_reduce_with_init_value(int *array,int length,int initvalue,int (*function) (int ,int,int index,int *array));
+float my_float_reduce(float *array,int length,float initvalue,float (*function) (float ,float,int index,float *array));
+int my_char_reduce(char *array,int length,char initvalue,char (*function) (char ,char,int index,char *array));
+char*my_string_reduce(char **array,int length,char* initvalue,char *(*function) (char* ,char*,int index,char **array));
 
 int my_int_indexOf(int *array,int length, int initvalue);
 int my_string_indexOf(char * string,char* initSubString);
